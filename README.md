@@ -1,92 +1,182 @@
-# Coding Challenge
+📊 NYC Jobs Data Engineering Assessment
+📌 Project Overview
 
-This Code assessment represents a coding challenge for Data Engineering roles.
+This project performs an end-to-end analysis of NYC job postings using PySpark.
+The objective is to demonstrate data engineering best practices including:
 
-## Purpose
+Data exploration and profiling
 
-- Evaluate your coding abilities and your software engineering skills
-- Judge your technical experience
-- Understand how you design the solution 
-- Have a technical coversation once the code submission is done
+Data cleaning and transformation
 
-## Challenge 
+Feature engineering
 
-In this challenge, we will use a dataset having the current job posting hosted by the City of New york which is available on the City of New York's official jobs site (https://www1.nyc.gov/jobs/index.page).
+KPI computation
 
-- Internal postings availble to city employees and external postings availbale to the public are included. 
-- Data is accesible in the CSV file [nyc-jobs.csv](https://github.com/ProjectsForDataChapter/data_engineering_takehome1/blob/main/dataset/nyc-jobs.csv)
+Visualization
 
-This challenge is composed of following steps: 
+Modular pipeline design
 
-### Data Exploration
+Test coverage
 
-- Provide a detailed analysis of source data: Column values (eg: Numerical vs character), categorical columns, etc. 
-- List of KPIs to be resolved:
-  - Whats the number of jobs posting per category (Top 10)? 
-  - Whats the salary distribution per job category? 
-  - Is there any correlation between the higher degree and the salary?
-  - Whats the job posting having the highest salary per agency? 
-  - Whats the job positings average salary per agency for the last 2 years? 
-  - What are the highest paid skills in the US market? 
+Deployment strategy proposal
 
-### Data Processing
- 
-- Create functions to process your dataset (Cleaning, column pre-processing, data wrangling, transformation etc) 
-- Apply atleast 3 feature engineering techniques 
-- Features removal based on the exploration/ profiling.
-- Store your processed data into a target file
+The dataset contains job postings from the official New York City Jobs portal, including internal and external postings.
 
-## Expectations
+🏗 Project Architecture
+nyc-jobs-data-engineering/
+│
+├── data/                   # Raw dataset (nyc-jobs.csv)
+├── notebooks/              # Exploratory analysis & visualizations
+├── src/                    # Modular PySpark business logic
+│   ├── data_processing.py
+│   ├── feature_engineering.py
+│   ├── kpi_analysis.py
+│   └── utils.py
+├── tests/                  # Unit tests
+├── output/                 # Processed dataset (Parquet format)
+├── main.py                 # Production pipeline entry point
+├── MyDocument.md           # Detailed documentation
+├── requirements.txt
+└── docker-compose.yml
 
-- Above mentioned challenge
-- Test cases 
-- Code Comments 
-- If any deployment to be done, proposals of the deployment steps
-- If you had to trigger your code, please suggest your approach. 
+🧰 Tech Stack
 
-## Coding Instructions
+Python 3.x
 
-- PySpark should be used
-- Feel free to use any libraries (you can use pip install, if needed)
-- Use a visualization library to present your analysis results.
-- Any learnings/ challenges/ considerations/ assumptions, please document in [MyDocument.md](https://github.com/ProjectsForDataChapter/data_engineering_takehome1/blob/main/MyDocument.md)
+PySpark
 
-## Technical Support:
+Pandas
 
-1. Clone the parent repository to your local. 
-     - If git clone using password does not work follow the below steps:
-       a. Click on your profile -> settings -> Developer settings -> Personal Access Tokens -> Tokens(Classic) -> Generate New Token
-       b. In select scopes, give all repo permissions -> Click on Generate Token
-       c. Copy the personal access token generated and copy it somewhere as it will be not visible again.
-       d. In git terminal when you run git clone command (using HTTPS protocol) -> enter git id and for password enter the personal access token generated in previous step.
-        
-     - **Access to the parent repo will be removed within 4 days from the day you are made as collaborator**.
-     
-2. Push the cloned repo into **your own** Github account.
-     - **Please don't commit anything to the parent repo, everything should be done in your own Github repo**.
-     
-3. Follow the installation instructions in [INSTALL.md](https://github.com/ProjectsForDataChapter/data_engineering_takehome1/blob/main/INSTALL.md)
-4. Open the Jupyter notebook home page, using the link similar to the one highlighted in the picture 
+Matplotlib
 
-  ![jupyter-notebook](https://github.com/ProjectsForDataChapter/data_engineering_takehome1/blob/main/pictures/docker-compose.png)
+Seaborn
 
-5. Open the notebook (assesment_notebook.ipynb). 
-6. Read the documentation and run the cells accordingly. Once you create a spark session you should be able to see application **pyspark-assesment** running in the Spark Master UI as below. 
+Pytest
 
-  ![spark-application](https://github.com/ProjectsForDataChapter/data_engineering_takehome1/blob/main/pictures/spark-application.png)
+Docker (optional deployment)
 
-By now you would have already have below things in place:
+📂 Dataset
 
-- Created Spark cluster with a master and 2 worker nodes.
-- Notebook to start working having the basic libraries imported (Please feel free to import any new library, if required). 
-- Datasets read that is required for your activity.
-- Sample function within the notebook arriving at a basic KPI.
-- Sample test case for testing the function. 
+Source: NYC official job postings
+Format: CSV
+Contains:
 
-## Submission:
- 
-Once you have completed your work, share an invite of **your own** GitHub repo to **projectsfordatachapter@gmail.com**, and send out an email to our hiring team. 
-We will review your work.
+Job metadata
 
-# Happy Coding!!
+Agency information
 
+Salary ranges
+
+Qualification requirements
+
+Posting dates
+
+Job descriptions
+
+🔍 Data Exploration
+
+The dataset was analyzed to identify:
+
+Numerical columns (Salary Range From, Salary Range To)
+
+Categorical columns (Agency, Job Category, Posting Type)
+
+Text fields (Job Description, Minimum Qualifications)
+
+Missing values and inconsistencies
+
+🛠 Data Processing
+
+The following transformations were applied:
+
+Null handling
+
+Salary midpoint calculation
+
+Text normalization
+
+Date conversion
+
+Column pruning based on profiling
+
+Processed dataset is stored in Parquet format for optimized querying.
+
+🧠 Feature Engineering
+
+Implemented feature engineering techniques:
+
+Salary midpoint (avg_salary)
+
+Degree requirement binary flag
+
+Experience extraction using regex
+
+Skill-based binary encoding (Python, SQL, AWS, Spark)
+
+📊 KPIs Computed
+
+Top 10 job categories by number of postings
+
+Salary distribution per job category
+
+Correlation between degree requirement and salary
+
+Highest salary per agency
+
+Average salary per agency (last 2 years)
+
+Highest paid skills in the US market
+
+Visualizations were generated using Seaborn and Matplotlib.
+
+🚀 How to Run
+1️⃣ Install Dependencies
+pip install -r requirements.txt
+2️⃣ Run Using Notebook (Recommended for Analysis)
+jupyter notebook
+Open:
+notebooks/assessment_notebook.ipynb
+3️⃣ Run Production Pipeline
+spark-submit main.py
+📈 Spark UI Monitoring
+
+While running:
+http://localhost:4040
+If unavailable, check:
+http://localhost:4041
+🧪 Running Tests
+pytest tests/
+🐳 Docker Deployment (Optional)
+
+To run using Docker:
+docker-compose up --build
+This sets up Spark master and worker nodes for distributed execution.
+
+⚙ Deployment Strategy
+
+Proposed deployment approaches:
+
+Apache Airflow for orchestration
+
+AWS EMR / Databricks for scalable execution
+
+S3 Data Lake for storage
+
+Dashboard integration (Power BI / Tableau)
+
+📌 Key Learnings
+
+Importance of modular PySpark design
+
+Handling Spark lazy evaluation
+
+Efficient aggregation before visualization
+
+Avoiding large .toPandas() conversions
+
+Managing distributed computation
+
+📎 Author
+
+Madhu Mitha
+Data Engineering Candidate
